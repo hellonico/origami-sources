@@ -1,0 +1,12 @@
+[{:class origami.filters.MyYolo$V3}
+ {:class origami.filters.DynamicAnnotate :point "10,100" :fontSize 2 :text "(str \"Yolo Tiny v3\")"}
+ ;{:class origami.filters.DynamicAnnotate :point "10,150" :fontFace 3 :fontSize 2 :text "(str (new java.util.Date))"}
+ ;{:class origami.filters.ClojureFilter
+ ; :fn "(fn[mat] (org.opencv.imgproc.Imgproc/applyColorMap mat mat 3) mat)"}
+ ; {:class origami.filters.CoolCanny}
+ ; {:class origami.filters.Cartoon2}
+ ; {:class origami.filters.ColorFilter$Red}
+ ;{:class origami.filters.ColorMap$Magma}
+ ;{:class origami.filters.ColorMap$Parula}
+ ]
+
