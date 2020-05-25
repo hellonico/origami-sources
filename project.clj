@@ -4,6 +4,15 @@
   :auto {:default {:file-pattern #"\.(java)$"}}
   :repositories [["jitpack" "https://jitpack.io/"]
                  ["vendredi" "https://repository.hellonico.info/repository/hellonico/"]]
+  :release-tasks
+  [["vcs" "assert-committed"]
+   ["change" "version" "leiningen.release/bump-version" "release"]
+   ["vcs" "commit"]
+   ["vcs" "tag" "--no-sign"]
+   ["deploy" "clojars"]
+   ["change" "version" "leiningen.release/bump-version"]
+   ["vcs" "commit"]
+   ["vcs" "push"]]
   :dependencies [[org.clojure/clojure "1.10.0" :scope "provided"]
                  [com.dropbox.core/dropbox-core-sdk "3.1.3"]
                  [com.flickr4java/flickr4java "3.0.4"]
