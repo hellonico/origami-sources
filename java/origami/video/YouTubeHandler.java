@@ -5,6 +5,7 @@ import com.commit451.youtubeextractor.YouTubeExtraction;
 import com.commit451.youtubeextractor.YouTubeExtractor;
 import origami.Origami;
 import origami.Camera;
+import origami.filters.WatchedFilter;
 import origami.utils.Downloader;
 
 public class YouTubeHandler implements VideoHandler {
@@ -48,14 +49,20 @@ public class YouTubeHandler implements VideoHandler {
     public static void main(String[] args) throws InterruptedException {
         Origami.init();
         final String input = args.length > 0 ? args[0] : "youtube://PnqzVkPDUHQ";
-        VideoCapture vc = (VideoCapture) Origami.CaptureDevice("youtube://PnqzVkPDUHQ");
-        System.out.println(vc.grab());
-//
-//        new Thread(() -> {
-//            // WatchedFilter wf = new WatchedFilter();
-//            // wf.setFilePath("filters.edn");
-//            new Camera().device(input).run();
-//        }).start();
+        // final String filterFile = args.length > 1 ? args[1]: null;
+
+        /**
+         * we don't use filters here because it is not a dependency and so the filter
+         * cannot be loaded.
+         */
+        Camera cam = new Camera().device(input);
+        // if(filterFile!=null) {
+        // System.out.println("Using filter file:" + filterFile);
+        // WatchedFilter wf = new WatchedFilter();
+        // wf.setFilePath(filterFile);
+        // cam.filter(wf);
+        // }
+        cam.run();
 
     }
 
