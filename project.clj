@@ -1,4 +1,4 @@
-(defproject origami-sources "0.1.0-SNAPSHOT"
+(defproject origami-sources "0.1.0"
   :java-source-paths ["java"]
   :plugins [[lein-auto "0.1.3"]]
   :auto {:default {:file-pattern #"\.(java)$"}}
