@@ -13,8 +13,14 @@
    [com.flickr4java.flickr.photos SearchParameters]
    [com.flickr4java.flickr REST Flickr]))
 
-(def settings
-  (read-string (slurp "settings.edn")))
+; ugly settings finder
+(def settings-filename "settings.edn")
+(def home-settings (str (System/getProperty "user.home") "/.origami/" settings-filename))
+(def target-file 
+  (cond 
+    (.exist (clojure.java.io/as-file settings-filename)) (read-string (slurp home-settings))
+    (.exist (clojure.java.io/as-file home-settings)) (read-string (slurp home-settings))
+    :else (do (println "Using empty origami settings. Please set $HOME/.origami/settings.edn"){})))
 
 (defn- lazy-mats [f coll]
   (lazy-seq
@@ -90,7 +96,7 @@
 (defn zip-seq [filename]
   (let [zip (ZipFile. filename)
         entries (iterator-seq (.entries zip))
-        list (filter #(string/includes? (.getName %) ".jpg") entries)
+        list (filter #(re-matches #".*(?i)[JPG|PNG|JPEG|GIF]" (.getName %)) entries)
         myfn #(let [f (java.io.File/createTempFile "origami" "jpg")]
                 (clojure.java.io/copy (.getInputStream zip %) f)
                 (cv/imread (.getAbsolutePath f)))]
