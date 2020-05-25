@@ -25,3 +25,4 @@ pom.xml
 bin
 *.mp4
 
+pom.xml.asc
