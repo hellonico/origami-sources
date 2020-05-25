@@ -15,6 +15,7 @@
         (spit log-file x :append true))
       (recur))
     (async/onto-chan c l)
+    (Thread/sleep 500)
     (async/close! c)
     (is (clojure.string/includes? (slurp log-file) "Mat"))))
 

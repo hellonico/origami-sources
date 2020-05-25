@@ -23,3 +23,5 @@ build.gradle.bak
 java.2/HelloCv.java
 pom.xml
 bin
+*.mp4
+
