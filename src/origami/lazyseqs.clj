@@ -16,10 +16,10 @@
 ; ugly settings finder
 (def settings-filename "settings.edn")
 (def home-settings (str (System/getProperty "user.home") "/.origami/" settings-filename))
-(def target-file 
+(def settings 
   (cond 
-    (.exist (clojure.java.io/as-file settings-filename)) (read-string (slurp home-settings))
-    (.exist (clojure.java.io/as-file home-settings)) (read-string (slurp home-settings))
+    (.exists (clojure.java.io/as-file settings-filename)) (read-string (slurp home-settings))
+    (.exists (clojure.java.io/as-file home-settings)) (read-string (slurp home-settings))
     :else (do (println "Using empty origami settings. Please set $HOME/.origami/settings.edn"){})))
 
 (defn- lazy-mats [f coll]

@@ -19,4 +19,4 @@
                  [org.jsoup/jsoup "1.10.2"]
                  [com.github.Commit451/YouTubeExtractor "6.0.0"]
                  [org.clojure/core.async "1.2.603" :scope "provided"]
-                 [origami/origami "4.3.0-7" :scope "provided"]])
+                 [origami/origami "4.3.0-8" :scope "provided"]])

@@ -7,13 +7,13 @@
 
 (deftest youtube-test
   (let [_ (YouTubeHandler.)
-        vc  (video/capture-device "youtube://PnqzVkPDUHQ")
+        vc  (video/capture-device "youtube://Dx5qFachd3A")
         mat (cv/new-mat)]
     (dotimes [_ 100]
       (.grab vc)
       (.retrieve vc mat))
     (println mat)
-    (is (= (cv/new-size 640 360) (cv/size mat)))))
+    (is (= (cv/new-size 854 480) (cv/size mat)))))
 
 (deftest https-test
   (let [_ (HttpVideoHandler.)
