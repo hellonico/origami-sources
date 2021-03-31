@@ -48,7 +48,7 @@ public class YouTubeHandler implements VideoHandler {
 
     public static void main(String[] args) throws InterruptedException {
         Origami.init();
-        final String input = args.length > 0 ? args[0] : "youtube://PnqzVkPDUHQ";
+        final String input = args.length > 0 ? args[0] : "youtube://YQHsXMglC9A";
         // final String filterFile = args.length > 1 ? args[1]: null;
 
         /**
