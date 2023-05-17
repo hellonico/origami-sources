@@ -1,4 +1,4 @@
-(defproject origami/sources "1.0.3"
+(defproject origami/sources "1.0.4-SNAPSHOT"
   :java-source-paths ["java"]
   :plugins [[lein-auto "0.1.3"]]
   :auto {:default {:file-pattern #"\.(java)$"}}
@@ -20,4 +20,4 @@
                  ;[com.github.Commit451/YouTubeExtractor "6.0.0"]
                  [com.github.sealedtx/java-youtube-downloader "3.2.3"]
                  [org.clojure/core.async "1.2.603" :scope "provided"]
-                 [origami/origami "4.7.0-9-SNAPSHOT" :scope "provided"]])
+                 [origami/origami "4.7.0-9" :scope "provided"]])
