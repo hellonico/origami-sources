@@ -1,16 +1,17 @@
-<?xml version="1.0" encoding="UTF-8"?><project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
   <groupId>origami</groupId>
   <artifactId>sources</artifactId>
   <packaging>jar</packaging>
-  <version>1.0.2</version>
+  <version>1.0.3-SNAPSHOT</version>
   <name>sources</name>
   <description/>
   <scm>
     <url>https://github.com/hellonico/origami-sources</url>
     <connection>scm:git:git://github.com/hellonico/origami-sources.git</connection>
     <developerConnection>scm:git:ssh://git@github.com/hellonico/origami-sources.git</developerConnection>
-    <tag>db1519d61b23fdccffe1cb4fac0fac932589439f</tag>
+    <tag>923db398f90521f7692e4c5655972b7b0d5a9c2f</tag>
   </scm>
   <build>
     <sourceDirectory>src</sourceDirectory>
@@ -47,14 +48,6 @@
           </execution>
         </executions>
       </plugin>
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-compiler-plugin</artifactId>
-        <configuration>
-          <source>8</source>
-          <target>8</target>
-        </configuration>
-      </plugin>
     </plugins>
   </build>
   <repositories>
@@ -80,7 +73,7 @@
     </repository>
     <repository>
       <id>jitpack</id>
-      <url>https://jitpack.io/</url>
+      <url>https://jitpack.io</url>
       <snapshots>
         <enabled>true</enabled>
       </snapshots>
@@ -107,7 +100,7 @@
       <groupId>org.clojure</groupId>
       <artifactId>clojure</artifactId>
       <version>1.10.0</version>
-<!--      <scope>provided</scope>-->
+      <scope>provided</scope>
     </dependency>
     <dependency>
       <groupId>com.dropbox.core</groupId>
@@ -125,21 +118,21 @@
       <version>1.10.2</version>
     </dependency>
     <dependency>
-      <groupId>com.github.Commit451</groupId>
-      <artifactId>YouTubeExtractor</artifactId>
-      <version>6.0.0</version>
+      <groupId>com.github.sealedtx</groupId>
+      <artifactId>java-youtube-downloader</artifactId>
+      <version>3.2.3</version>
     </dependency>
     <dependency>
       <groupId>org.clojure</groupId>
       <artifactId>core.async</artifactId>
       <version>1.2.603</version>
-<!--      <scope>provided</scope>-->
+      <scope>provided</scope>
     </dependency>
     <dependency>
       <groupId>origami</groupId>
       <artifactId>origami</artifactId>
-      <version>4.5.1-1-SNAPSHOT</version>
-<!--      <scope>provided</scope>-->
+      <version>4.7.0-9-SNAPSHOT</version>
+      <scope>provided</scope>
     </dependency>
   </dependencies>
 </project>

@@ -24,5 +24,7 @@ java.2/HelloCv.java
 pom.xml
 bin
 *.mp4
-
 pom.xml.asc
+.clj-kondo/
+.lsp/
+sources.iml
