@@ -6,12 +6,13 @@
    [opencv4.core :as cv]
    [opencv4.utils :as u])
   (:import
-   [java.util.zip ZipFile]
-   [org.jsoup Jsoup]
-   [com.dropbox.core DbxRequestConfig]
-   [com.dropbox.core.v2 DbxClientV2]
-   [com.flickr4java.flickr.photos SearchParameters]
-   [com.flickr4java.flickr REST Flickr]))
+    (java.io File FileOutputStream)
+    [java.util.zip ZipFile]
+    [org.jsoup Jsoup]
+    [com.dropbox.core DbxRequestConfig]
+    [com.dropbox.core.v2 DbxClientV2]
+    [com.flickr4java.flickr.photos SearchParameters]
+    [com.flickr4java.flickr REST Flickr]))
 
 ; ugly settings finder
 (def settings-filename "settings.edn")
@@ -54,8 +55,8 @@
 ; DROPBOX
 (defn- meta-to-mat [files meta]
   (let [file-meta (.download files (.getPathDisplay meta))
-        f (java.io.File/createTempFile "origami" "jpg")
-        fos (java.io.FileOutputStream. f)]
+        f (File/createTempFile "origami" "jpg")
+        fos (FileOutputStream. f)]
     (.download file-meta fos)
     (.close fos)
     (cv/imread (.getAbsolutePath f))))
@@ -77,15 +78,19 @@
 ;
 ; FOLDER
 ;
+(defn file-extension [s]
+  (second (re-find #"(\.[a-zA-Z0-9]+)$" s)))
+
 (defn- list-folder [ext folder]
   (->>   folder
          (io/as-file)
          (.listFiles)
-         (filter #(string/includes? (string/lower-case (.getName %)) ext))))
+         (filter #(contains? ext (string/lower-case (.getName %))) )))
 
+(def IMAGES_EXTENSIONS #{"jpg" "jpeg" "gif" "webp" "png"})
 (defn folder-seq
-  ([] (folder-seq "jpg" "." cv/IMREAD_UNCHANGED))
-  ([path] (folder-seq "jpg" path cv/IMREAD_UNCHANGED))
+  ([] (folder-seq IMAGES_EXTENSIONS  "." cv/IMREAD_UNCHANGED))
+  ([path] (folder-seq IMAGES_EXTENSIONS path cv/IMREAD_UNCHANGED))
   ([ext path flag]
    (let [list (list-folder ext path)
          myfn (fn [file] (cv/imread (.getAbsolutePath file) flag))]
@@ -96,8 +101,8 @@
 (defn zip-seq [filename]
   (let [zip (ZipFile. filename)
         entries (iterator-seq (.entries zip))
-        list (filter #(re-matches #".*(?i)[JPG|PNG|JPEG|GIF]" (.getName %)) entries)
-        myfn #(let [f (java.io.File/createTempFile "origami" "jpg")]
+        list (filter #(re-matches #".*(?i)[JPG|PNG|JPEG|GIF|WEBP]" (.getName %)) entries)
+        myfn #(let [f (File/createTempFile "origami" "jpg")]
                 (clojure.java.io/copy (.getInputStream zip %) f)
                 (cv/imread (.getAbsolutePath f)))]
     (lazy-mats myfn list)))
@@ -106,7 +111,7 @@
 ; WEBPAGE
 ; 
 (defn webpage-seq
-  ([url] (webpage-seq url "img[src~=(?i)\\.(png|jpe?g|gif)]"))
+  ([url] (webpage-seq url "img[src~=(?i)\\.(png|jpe?g|gif|webp)]"))
   ([url selector]
    (let [doc (.get (Jsoup/connect url))
          imgs (.select doc selector)
@@ -120,7 +125,7 @@
 ;
 (defn github-seq [url]
  (let [
-       selector "a[href~=(?i)\\.(png|jpe?g|gif)]"
+       selector "a[href~=(?i)\\.(png|jpe?g|gif|webp)]"
        doc (.get (Jsoup/connect url))
        list (.select doc selector)
        myfn (fn[a] 
