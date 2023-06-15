@@ -4,14 +4,14 @@
   <groupId>origami</groupId>
   <artifactId>sources</artifactId>
   <packaging>jar</packaging>
-  <version>1.0.5</version>
+  <version>1.0.6-SNAPSHOT</version>
   <name>sources</name>
   <description/>
   <scm>
     <url>https://github.com/hellonico/origami-sources</url>
     <connection>scm:git:git://github.com/hellonico/origami-sources.git</connection>
     <developerConnection>scm:git:ssh://git@github.com/hellonico/origami-sources.git</developerConnection>
-    <tag>f28375cdf73122aa988b5add385b30ba69226d0b</tag>
+    <tag>077f2e88d95216a5d42d98831481952acb126250</tag>
   </scm>
   <build>
     <sourceDirectory>src</sourceDirectory>
@@ -131,7 +131,7 @@
     <dependency>
       <groupId>origami</groupId>
       <artifactId>origami</artifactId>
-      <version>4.7.0-12</version>
+      <version>4.7.0-17</version>
       <scope>provided</scope>
     </dependency>
   </dependencies>

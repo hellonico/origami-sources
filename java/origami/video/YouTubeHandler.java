@@ -13,7 +13,6 @@ import com.github.kiulian.downloader.model.videos.formats.AudioFormat;
 import com.github.kiulian.downloader.model.videos.formats.Format;
 import com.github.kiulian.downloader.model.videos.formats.VideoFormat;
 import com.github.kiulian.downloader.model.videos.formats.VideoWithAudioFormat;
-import org.opencv.videoio.Videoio;
 import origami.Camera;
 import origami.Origami;
 
@@ -179,7 +178,7 @@ public class YouTubeHandler implements VideoHandler {
         Origami.init();
 
         Camera cam = new Camera();
-        cam.device("youtube://YQHsXMglC9A");
+        cam.device("{:device \"youtube://YQHsXMglC9A\"}");
         origami.Filter p = mat -> {
             cvtColor(mat, mat, COLOR_BGR2GRAY);
             cvtColor(mat, mat, COLOR_GRAY2BGR);
@@ -188,7 +187,6 @@ public class YouTubeHandler implements VideoHandler {
         cam.filter(p);
         cam.slowDown(100);
         cam.run();
-
 
     }
 

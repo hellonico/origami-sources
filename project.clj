@@ -19,4 +19,4 @@
                  [org.jsoup/jsoup "1.10.2"]
                  [com.github.sealedtx/java-youtube-downloader "3.2.3"]
                  [org.clojure/core.async "1.2.603" :scope "provided"]
-                 [origami/origami "4.7.0-12" :scope "provided"]])
+                 [origami/origami "4.7.0-17" :scope "provided"]])
